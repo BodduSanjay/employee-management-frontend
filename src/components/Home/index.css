@@ -1,0 +1,110 @@
+.home-bg-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-cotanier {
+  background-color: rgb(28, 28, 28);
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  position: sticky;
+}
+
+.logo-link {
+  color: white;
+  text-decoration: none;
+}
+
+.logo-EM {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.home-body-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-btn {
+  height: 40px;
+  width: 120px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background-color: black;
+  color: white;
+  transition: all 0.3ms;
+}
+
+.add-btn:hover {
+  background-color: rgb(43, 43, 43);
+}
+
+.update-btn {
+  height: 25px;
+  width: 90px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 5px;
+  background-color: rgb(3, 138, 222);
+  color: white;
+  transition: all 0.3ms;
+}
+
+.update-btn:hover {
+  background-color: rgb(48, 154, 220);
+}
+
+.delete-btn {
+  height: 25px;
+  width: 90px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 5px 5px 5px 0px;
+  background-color: rgb(247, 59, 17);
+  color: white;
+  transition: all 0.3ms;
+}
+
+.delete-btn:hover {
+  background-color: rgb(244, 82, 46);
+}
+
+th {
+  padding: 5px;
+}
+
+td {
+  padding: 3px;
+}
+
+.no-details-para {
+  position: relative;
+  top: 0px;
+  left: 120px;
+}
+
+.input-btn-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-input {
+  height: 35px;
+  width: 200px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
