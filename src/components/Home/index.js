@@ -4,12 +4,12 @@ import { TailSpin } from "react-loader-spinner";
 
 import "./index.css";
 
-// Multiple api status handle.
 const currentApiStatus = {
   loading: "LOADING",
   success: "SUCCESS",
   failure: "FAILURE",
 };
+
 const Home = () => {
   const [employeesList, setEmployeesList] = useState([]);
   const [search, setSearch] = useState("");
@@ -19,7 +19,6 @@ const Home = () => {
     fetchEmployee();
   }, []);
 
-  // Fetch's all employees list.
   const fetchEmployee = async () => {
     const response = await fetch("http://localhost:8080/employees");
     const data = await response.json();
@@ -31,7 +30,6 @@ const Home = () => {
     }
   };
 
-  // Handles Delete Click.
   const handleDelete = async (id) => {
     const url = `http://localhost:8080/employees/${id}`;
     try {
@@ -45,7 +43,6 @@ const Home = () => {
     }
   };
 
-  // Handle's Id search.
   const handleSearch = async () => {
     try {
       if (search !== "") {
@@ -54,7 +51,6 @@ const Home = () => {
         );
         const data = await response.json();
 
-        //Set's employees list empty if employee not found.
         if (response.status === 404) {
           setEmployeesList([]);
         }
@@ -71,80 +67,80 @@ const Home = () => {
     }
   };
 
-  // Render's Loading icon when the app is opned or reloaded.
   const renderLoading = () => (
-    <div className="loading-cont">
+    <div className="d-flex justify-content-center mt-5">
       <TailSpin size={20} color="#3aabe8" />
     </div>
   );
 
-  // Render's List of Employee's to table.
   const renderList = () => (
     <div>
-      <div className="input-btn-cont">
-        <Link to="/add-employee">
-          <button className="add-btn">Add Employee</button>
+      <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <Link to="/add-employee" className="btn btn-dark mb-2">
+          Add Employee
         </Link>
-        <div>
+        <div className="d-flex">
           <input
             type="number"
             value={search}
-            className="search-input"
+            className="form-control mr-2"
             placeholder="Enter Employee Id Here..."
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="add-btn" onClick={handleSearch}>
+          <button className="btn btn-dark" onClick={handleSearch}>
             Search
           </button>
         </div>
       </div>
 
       {employeesList.length === 0 ? (
-        <h4 className="no-details-para">No employee detalis available.</h4> // Prints No Employees if list is Empty
+        <h4 className="text-center text-muted">
+          No employee details available.
+        </h4>
       ) : (
-        <table border={1}>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>FIRSTNAME</th>
-              <th>LASTNAME</th>
-              <th>EMAIL</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employeesList.map((each) => (
-              <tr key={each.id}>
-                <td>{each.id}</td>
-                <td>{each.firstName}</td>
-                <td>{each.lastName}</td>
-                <td>{each.email}</td>
-                <td>
-                  <Link
-                    to={`/edit-employee/${each.id}`}
-                    className="update-link"
-                  >
-                    <button className="update-btn">Update</button>
-                  </Link>
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDelete(each.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+        <div className="table-responsive">
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {employeesList.map((each) => (
+                <tr key={each.id}>
+                  <td>{each.id}</td>
+                  <td>{each.firstName}</td>
+                  <td>{each.lastName}</td>
+                  <td>{each.email}</td>
+                  <td>
+                    <Link
+                      to={`/edit-employee/${each.id}`}
+                      className="update-link"
+                    >
+                      <button className="btn btn-primary">Update</button>
+                    </Link>
+                    <button
+                      className="btn btn-danger ml-2"
+                      onClick={() => handleDelete(each.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
 
-  // Render's if any failure in the process.
   const renderfailure = () => <h1>Something Went Wrong...</h1>;
 
-  // call's multiple functions in defferent stages to manage interface of application.
   const renderAll = () => {
     switch (apiStatus) {
       case currentApiStatus.loading:
@@ -159,14 +155,14 @@ const Home = () => {
   };
 
   return (
-    <div className="home-bg-container">
-      <div className="header-cotanier">
-        <Link to="/" className="logo-link">
+    <div className="container mt-5">
+      <div className="header-container mb-4">
+        <Link to="/" className="text-decoration-none">
           <h3 className="logo-EM">Employee Management</h3>
         </Link>
       </div>
-      <div className="home-body-container">
-        <h2>Employees List</h2>
+      <div>
+        <h2 className="mb-4 text-center">Employees List</h2>
         {renderAll()}
       </div>
     </div>

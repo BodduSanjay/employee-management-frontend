@@ -19,11 +19,10 @@ const AddEmployee = () => {
           setFirstName(data.firstName);
           setLastName(data.lastName);
           setEmail(data.email);
-        }); // Set the values to the corresponding inputs of previous employee.
+        });
     }
   }, [id]);
 
-  // handle's creating new employee or updating old employee.
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -44,7 +43,6 @@ const AddEmployee = () => {
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify(employee),
     };
 
@@ -56,50 +54,59 @@ const AddEmployee = () => {
   };
 
   return (
-    <div className="home-bg-container">
-      <div className="header-cotanier">
-        <Link to="/" className="logo-link">
+    <div className="container mt-5">
+      <div className="header-container mb-4">
+        <Link to="/" className="text-decoration-none">
           <h3 className="logo-EM">Employee Management</h3>
         </Link>
       </div>
-      <div className="add-employee-cont">
-        <h2>{isEdit ? "Update Employee" : "Add Employee"}</h2>
+      <div className="card p-4 shadow-sm">
+        <h2 className="text-center">
+          {isEdit ? "Update Employee" : "Add Employee"}
+        </h2>
         <form onSubmit={handleSubmit} className="form-employee">
-          <label htmlFor="first-name-id">First Name</label>
-          <input
-            type="text"
-            placeholder="Enter First Name Here..."
-            value={firstName}
-            id="first-name-id"
-            required
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <label htmlFor="last-name-id">Last Name</label>
-          <input
-            type="text"
-            placeholder="Enter Last Name Here..."
-            value={lastName}
-            id="last-name-id"
-            required
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <label htmlFor="email-id">Email Id</label>
-          <input
-            type="email"
-            placeholder="Enter Email Id Here..."
-            value={email}
-            required
-            id="email-id"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div className="btn-cont">
-            <button type="submit" className="submit-btn">
+          <div className="form-group w-100">
+            <label htmlFor="first-name-id">First Name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter First Name Here..."
+              value={firstName}
+              id="first-name-id"
+              required
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="form-group w-100">
+            <label htmlFor="last-name-id">Last Name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter Last Name Here..."
+              value={lastName}
+              id="last-name-id"
+              required
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div className="form-group w-100">
+            <label htmlFor="email-id">Email Id</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter Email Id Here..."
+              value={email}
+              required
+              id="email-id"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="w-100 d-flex justify-content-between">
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
-            <Link to="/">
-              <button type="button" className="back-btn">
-                Back
-              </button>
+            <Link to="/" className="btn btn-secondary">
+              Back
             </Link>
           </div>
         </form>
